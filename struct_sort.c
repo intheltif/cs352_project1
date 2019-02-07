@@ -45,8 +45,8 @@ void sort(person_t){
  * This method is a helper method for sort. This swaps the places of two 
  * people.
  *
- * @param person1
- * @param person2 
+ * @param person1 The first person of the two that are being swaped.
+ * @param person2 The second person ot the two that are being swaped.
  */
 void swap(person_t *person1, person_t *person2){
     person_t temp = *person1;
