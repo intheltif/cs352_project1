@@ -15,14 +15,14 @@ typedef struct{
     char city;
     char state[STATE];
     int zip_code[ZIP];
-}sddress_t //makes a instance of a address for a person.
+} address_t //makes a instance of a address for a person.
 
 typedef struct{
     char first_name[NUM_PEOPLE];
     char last_name[NUM_PEOPLE];
     addrees_t address;
     int number; 
-}person_t; //makes an instance of a person.
+} person_t; //makes an instance of a person.
 
 /*
  * Description
