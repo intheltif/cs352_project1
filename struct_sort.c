@@ -11,23 +11,30 @@
 #include "struct_sort.h"
 
 typedef struct{
-    char street_add;
-    char city;
-    char state[STATE];
-    int zip_code[ZIP];
-}sddress_t //makes a instance of a address for a person.
+    char street_add; //The street number and name that the person live on.
+    char city; //City that the person lives in. 
+    char state[STATE]; //State that person lives in.
+    int zip_code[ZIP]; //Zip code that the person lives in.
+}sddress_t //Makes a instance of a address for a person.
 
 typedef struct{
-    char first_name[NUM_PEOPLE];
-    char last_name[NUM_PEOPLE];
-    addrees_t address;
-    int number; 
-}person_t; //makes an instance of a person.
+    char first_name[NUM_PEOPLE]; //First name of person.
+    char last_name[NUM_PEOPLE]; //Last name of person.
+    addrees_t address; //Struct address of person.
+    int number; //Phone number of the person.
+}person_t; //Makes an instance of a person.
 
 /*
- * Description
+ * This function runs the program.
+ */
+int main(void){
+
+}
+
+/*
+ * This method does a quicksort on the given array of persons.
  *
- * @param person_t 
+ * @param  
  * @return
  */
 void sort(person_t){
@@ -35,10 +42,15 @@ void sort(person_t){
 }
 
 /*
- * Description
+ * This method is a helper method for sort. This swaps the places of two 
+ * people.
  *
- * @return
+ * @param person1
+ * @param person2 
  */
-int main(void){
-
+void swap(person_t *person1, person_t *person2){
+    person_t temp = *person1;
+    *person1 = *person2;
+    *person2 = temp;
 }
+
