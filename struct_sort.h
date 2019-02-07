@@ -14,6 +14,6 @@ void sort(person_t person);
 
 void swap(person_t person1, person_t person2);
 
-int readFile(void);
+int readFile(char *inputFile);
 
-int writeFile(void);
+int writeFile(char *outputFile);

@@ -55,3 +55,10 @@ void swap(person_t *person1, person_t *person2){
     *person2 = temp;
 }
 
+int readFile(char *inputFile) {
+
+}
+
+int writeFile(char *outputFile) {
+
+}
