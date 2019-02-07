@@ -9,6 +9,7 @@
  * @version 1.0 (February 18, 2019)
  */
 #include "struct_sort.h"
+#include <stdio.h>
 
 typedef struct{
     char street_add; //The street number and name that the person live on.
