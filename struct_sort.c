@@ -11,20 +11,6 @@
 #include "struct_sort.h"
 #include <stdio.h>
 
-typedef struct{
-    char street_add; //The street number and name that the person live on.
-    char city; //City that the person lives in. 
-    char state[STATE]; //State that person lives in.
-    int zip_code[ZIP]; //Zip code that the person lives in.
-}sddress_t //Makes a instance of a address for a person.
-
-typedef struct{
-    char first_name[NUM_PEOPLE]; //First name of person.
-    char last_name[NUM_PEOPLE]; //Last name of person.
-    addrees_t address; //Struct address of person.
-    int number; //Phone number of the person.
-}person_t; //Makes an instance of a person.
-
 /*
  * This function runs the program.
  */
