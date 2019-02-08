@@ -42,20 +42,20 @@ void swap(person_t *person1, person_t *person2){
 }
 
 /*
- * descrition
+ * This reads in a file by a specified input file.
  *
- * @param
- * @return
+ * @param *inputFile Is the address of the file that is being scaned in.
+ * @return 
  */
 int readFile(char *inputFile) {
 
 }
 
 /*
- * Decritpion
+ * This writes to a specified output file.
  *
- * @param
- * @return
+ * @param *outputFile Is the address that the output is written to.
+ * @return 
  */
 int writeFile(char *outputFile) {
 
