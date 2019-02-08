@@ -55,10 +55,22 @@ void swap(person_t *person1, person_t *person2){
     *person2 = temp;
 }
 
+/*
+ * descrition
+ *
+ * @param
+ * @return
+ */
 int readFile(char *inputFile) {
 
 }
 
+/*
+ * Decritpion
+ *
+ * @param
+ * @return
+ */
 int writeFile(char *outputFile) {
 
 }

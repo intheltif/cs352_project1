@@ -12,7 +12,7 @@
 
 void sort(person_t person);
 
-void swap(person_t person1, person_t person2);
+void swap(person_t *person1, person_t *person2);
 
 int readFile(char *inputFile);
 
