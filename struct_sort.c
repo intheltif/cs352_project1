@@ -65,8 +65,7 @@ int readFile(char *inputFile) {
     char buff[100];
 
     while( fgets(buff, 100, input_p) != NULL ) {
-        //Use buff to update person struct
-        //TODO: Figure out how each line is seperated, then use regex to split
+        parseLine(buff);
     }
 }
 
@@ -86,8 +85,10 @@ int writeFile(char *outputFile) {
  * @param stringToParse The string to be parsed
  * @return
  */
-void parseFile(char* stringToParse) {
+void parseLine(char* stringToParse) {
 
     //Parses array, then updates structs based on that
+    //Use buff to update person struct
+    //TODO: Figure out how each line is seperated, then use regex to split
 
 }

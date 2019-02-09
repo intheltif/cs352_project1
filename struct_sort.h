@@ -32,4 +32,4 @@ int readFile(char *inputFile);
 
 int writeFile(char *outputFile);
 
-void parseFile(char* stringToParse);
+void parseLine(char* stringToParse);
