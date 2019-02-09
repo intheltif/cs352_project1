@@ -28,7 +28,17 @@ typedef struct{
 /*
  * This function runs the program.
  */
-int main(void){
+int main(int argc, char **argv){
+    
+    //Checking if correct number of command line arguments received
+    // prints usage message and exits program if it is not
+    if( 3 != argc ) {
+        fprint("Usage is: struct_sort <inputFile> <outputFile>");
+        return 0;
+    }
+
+    readFile(argv[1]);
+    writeFile(argv[2]);
 
 }
 
@@ -55,10 +65,32 @@ void swap(person_t *person1, person_t *person2){
     *person2 = temp;
 }
 
+/*
+ * This method reads data from an input file
+ *
+ * @param  
+ * @return
+ */
 int readFile(char *inputFile) {
+    
+    FILE *input_p = fopen(inputFile, "r");
 
+    char buff[100];
+
+    while( fgets(buff, 100, input_p) != NULL ) {
+        //writes to a file?
+    }
 }
 
+/*
+ * This method writes to a given file
+ *
+ * @param char* outputFile - the file to output to.
+ * @return
+ */
 int writeFile(char *outputFile) {
 
 }
+
+//I think we may need another method that parses the file and updates the
+//  different structs
