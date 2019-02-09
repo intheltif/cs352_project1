@@ -31,3 +31,5 @@ void swap(person_t *person1, person_t *person2);
 int readFile(char *inputFile);
 
 int writeFile(char *outputFile);
+
+void parseFile(char* stringToParse);

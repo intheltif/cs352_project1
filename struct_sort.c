@@ -25,6 +25,7 @@ int main(int argc, char **argv){
 
     readFile(argv[1]);
     writeFile(argv[2]);
+    //if possible: writeFile(readFile(argv[1]), argv[2]) with adjustments
 
 }
 
@@ -64,7 +65,8 @@ int readFile(char *inputFile) {
     char buff[100];
 
     while( fgets(buff, 100, input_p) != NULL ) {
-        //writes to a file?
+        //Use buff to update person struct
+        //TODO: Figure out how each line is seperated, then use regex to split
     }
 }
 
@@ -78,5 +80,14 @@ int writeFile(char *outputFile) {
 
 }
 
-//I think we may need another method that parses the file and updates the
-//  different structs
+/*
+ * This parses a specified array of characters (AKA a string)
+ *
+ * @param stringToParse The string to be parsed
+ * @return
+ */
+void parseFile(char* stringToParse) {
+
+    //Parses array, then updates structs based on that
+
+}
