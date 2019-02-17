@@ -10,6 +10,7 @@
  */
 #include "struct_sort.h"
 #include <stdio.h>
+#include <string.h>
 
 /*
  * This function runs the program.
@@ -58,14 +59,20 @@ void swap(person_t *person1, person_t *person2){
  * @param *inputFile Is the address of the file that is being scaned in.
  * @return 
  */
-int readFile(char *inputFile) {
+person_t readFile(char **inputFile) {
     
-    FILE *input_p = fopen(inputFile, "r");
+    FILE *input_p = fopen(*inputFile, "r");
+    person_t people[100];
+    person_t person;
+    
+    char buff[101];
 
-    char buff[100];
+    while( fgets(buff, 101, input_p) != NULL ) {
+        //Passes the address of the beginning of array for parsing
+        //parseLine(&buff);
+        person.last_name = sscanf(buff, %[^,]);
 
-    while( fgets(buff, 100, input_p) != NULL ) {
-        parseLine(buff);
+
     }
 }
 
@@ -75,7 +82,7 @@ int readFile(char *inputFile) {
  * @param *outputFile Is the address that the output is written to.
  * @return 
  */
-int writeFile(char *outputFile) {
+int writeFile(char **outputFile) {
 
 }
 
@@ -87,8 +94,7 @@ int writeFile(char *outputFile) {
  */
 void parseLine(char* stringToParse) {
 
-    //Parses array, then updates structs based on that
-    //Use buff to update person struct
-    //TODO: Figure out how each line is seperated, then use regex to split
+    //TODO use sscanf() as described in Dr. Holliday's notes
+    //ALERT: We may not actually need this function. Still deciding
 
 }
