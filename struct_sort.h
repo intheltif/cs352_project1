@@ -10,19 +10,25 @@
 #define NUM_PEOPLE 100;
 #define STATE 3;
 
+/*
+ *Makes a instance of a persons address
+ */
 typedef struct{
-    char street_add;
-    char city;
+    char street_add[NUM_PEOPLE];
+    char city[NUM_PEOPLE];
     char state[STATE];
     int zip_code;
-}address_t //Makes instance of a persons address.
+}address_t 
 
+/*
+ *Makes an instance of a person
+ */
 typedef struct{
-    char first_name;
-    char last_name;
+    char first_name[NUM_PEOPLE;
+    char last_name[NUM_PEOPLE];
     address_t address;
     int phone_num;
-}person_t //Makes an instance of a person.
+}person_t 
 
 void sort(person_t person);
 
