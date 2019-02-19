@@ -31,13 +31,46 @@ int main(int argc, char **argv){
 }
 
 /*
- * This method does a quicksort on the given array of persons.
+ * This method takes the last element and makes the element the pivot 
+ * and the all smaller than pivot goes to the left, all larger than pivot goes 
+ * the right. 
  *
- * @param  
- * @return
+ * @param 
+ * @param
+ * @param 
+ * @return 
  */
-void sort(person_t){
+int sort(person_t* arr , int low, int high){
+    while(arr[high] == 0){ //Finds the end of the array that is not equal to 0.
+        high--;
+    }
+    person_t pivot = arr[high];
+    int i = (low - 1); 
 
+    if(int j = low; j <= high - 1; j++){
+       if(strcmp(pivot, arr[j]) > 0){
+           i++;
+           swap(&arr[i], &arr[j]);
+       }
+    }
+    swap(&arr[i + 1], &arr[high]);
+    return (i + 1);
+    
+}
+
+/*
+ *This method performs a quickSort on an array of person_t's.
+ *
+ *@param arr
+ *@param low 
+ *@param high
+ */
+void quickSort(person_t* arr , int low, int high){
+    if (low < high){
+        person_t piv = sort( , low, high);
+
+        quickSort(arr , low, pi - 1);
+        quickSort(arr , pi + 1, high); 
 }
 
 /*

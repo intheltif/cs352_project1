@@ -32,6 +32,8 @@ typedef struct{
 
 void sort(person_t person);
 
+void quicksort();
+
 void swap(person_t *person1, person_t *person2);
 
 int readFile(char *inputFile);
