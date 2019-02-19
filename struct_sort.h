@@ -7,37 +7,38 @@
  * @version 1.0 (February 18, 2019)
  */
 
-#define NUM_PEOPLE 100;
+#define NUM_PEOPLE 101;
+#define STREET_ADDR_SIZE 31;
+#define PHONE_NUM_SIZE 13;
 #define STATE 3;
+#define NUM_ARGS 3;
 
 /*
  *Makes a instance of a persons address
  */
 typedef struct{
-    char street_add[NUM_PEOPLE];
-    char city[NUM_PEOPLE];
+    char street_add[STREET_ADDR_SIZE];
+    char city[STREET_ADDR_SIZE];
     char state[STATE];
     int zip_code;
-}address_t 
+}address_t
 
 /*
  *Makes an instance of a person
  */
 typedef struct{
-    char first_name[NUM_PEOPLE;
+    char first_name[NUM_PEOPLE];
     char last_name[NUM_PEOPLE];
     address_t address;
-    int phone_num;
+    char phone_num[PHONE_NUM_SIZE];
 }person_t 
 
-void sort(person_t person);
+void sort(person_t);
 
 void quicksort();
 
-void swap(person_t *person1, person_t *person2);
+void swap(person_t*, person_t*);
 
-int readFile(char *inputFile);
+*person_t readFile(char*);
 
-int writeFile(char *outputFile);
-
-void parseLine(char* stringToParse);
+int writeFile(char*);
