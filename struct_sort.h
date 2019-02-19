@@ -7,8 +7,9 @@
  * @version 1.0 (February 18, 2019)
  */
 
-#define NUM_PEOPLE 100;
+#define NUM_PEOPLE 101;
 #define STATE 3;
+#define NUM_ARGS 3;
 
 typedef struct{
     char street_add;

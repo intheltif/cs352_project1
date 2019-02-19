@@ -17,13 +17,15 @@
  */
 int main(int argc, char **argv){
     
+    int i = 0;
+    
     //Checking if correct number of command line arguments received
     // prints usage message and exits program if it is not
-    if( 3 != argc ) {
+    if( argc != NUM_ARGS ) {
         fprint("Usage is: struct_sort <inputFile> <outputFile>");
         return 0;
     }
-
+    
     readFile(argv[1]);
     writeFile(argv[2]);
     //if possible: writeFile(readFile(argv[1]), argv[2]) with adjustments
@@ -59,13 +61,17 @@ void swap(person_t *person1, person_t *person2){
  * @param *inputFile Is the address of the file that is being scaned in.
  * @return 
  */
-person_t readFile(char **inputFile) {
+*person_t readFile(char **inputFile) {
     
-    FILE *input_p = fopen(*inputFile, "r");
-    person_t people[100];
+    /** An array of person_t structs **/
+    person_t people[NUM_PEOPLE];
+    
     person_t person;
     
-    char buff[101];
+    char buff[NUM_PEOPLE];
+    
+    FILE *input_p = fopen(*inputFile, "r");
+    
 
     while( fgets(buff, 101, input_p) != NULL ) {
         //Passes the address of the beginning of array for parsing
