@@ -61,11 +61,14 @@ void swap(person_t *person1, person_t *person2){
  * @param *inputFile Is the address of the file that is being scaned in.
  * @return 
  */
-*person_t readFile(char **inputFile) {
+*person_t readFile(char *inputFile) {
     
     /** An array of person_t structs **/
     person_t people[NUM_PEOPLE];
-    
+    //Assures memory cleared before adding values
+    bzero(people, NUM_PEOPLE);
+
+    address_t address;
     person_t person;
     
     char buff[NUM_PEOPLE];
@@ -73,12 +76,13 @@ void swap(person_t *person1, person_t *person2){
     FILE *input_p = fopen(*inputFile, "r");
     
 
-    while( fgets(buff, 101, input_p) != NULL ) {
-        //Passes the address of the beginning of array for parsing
-        //parseLine(&buff);
-        person.last_name = sscanf(buff, %[^,]);
-
-
+    while( fgets(buff, NUM_PEOPLE, input_p) != NULL ) {
+        //Scans each string returned from buff and
+        //adds a new person and address struct
+        sscanf(idk, "%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,]", 
+               person.first_name, person.last_name,
+               address.street_add, address.city, address.state,
+               address.zipcode, person.phone_num);
     }
 }
 
