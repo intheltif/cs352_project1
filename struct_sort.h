@@ -21,7 +21,7 @@ typedef struct{
     char city[STREET_ADDR_SIZE];
     char state[STATE];
     int zip_code;
-}address_t
+}address_t;
 
 /*
  *Makes an instance of a person
@@ -31,11 +31,11 @@ typedef struct{
     char last_name[NUM_PEOPLE];
     address_t address;
     char phone_num[PHONE_NUM_SIZE];
-}person_t 
+}person_t;
 
-void sort(person_t);
+person_t sort(person_t, int, int);
 
-void quicksort();
+void quicksort(person_t, int, int);
 
 void swap(person_t*, person_t*);
 

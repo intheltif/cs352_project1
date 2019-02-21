@@ -42,22 +42,21 @@ int main(int argc, char **argv){
  * @param 
  * @return 
  */
-int sort(person_t* arr , int low, int high){
+person_t sort(person_t arr[] , int low, int high){
     while(arr[high] == 0){ //Finds the end of the array that is not equal to 0.
         high--;
     }
     person_t pivot = arr[high];
     int i = (low - 1); 
-
-    if(int j = low; j <= high - 1; j++){
-       if(strcmp(pivot, arr[j]) > 0){
+    int j;
+    if(j = low; j <= high - 1; j++){
+       if(strcmp(pivot.last, arr[j].last) > 0){
            i++;
            swap(&arr[i], &arr[j]);
        }
     }
     swap(&arr[i + 1], &arr[high]);
-    return (i + 1);
-    
+    return arr[i + 1];
 }
 
 /*
@@ -67,12 +66,11 @@ int sort(person_t* arr , int low, int high){
  *@param low 
  *@param high
  */
-void quickSort(person_t* arr , int low, int high){
-    if (low < high){
-        person_t piv = sort( , low, high);
-
-        quickSort(arr , low, pi - 1);
-        quickSort(arr , pi + 1, high); 
+void quickSort(person_t arr[] , int low, int high){
+    if (low < high){ //makes sure that low is not large that high.
+        sort( , low, high);
+        quickSort(arr , low, high - 1);
+        quickSort(arr , low + 1, high); 
 }
 
 /*
