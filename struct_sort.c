@@ -75,8 +75,8 @@ person_t sort(person_t arr[] , int low, int high){
        if(strcmp(pivot.last_name, arr[j].last_name) > 0){
            i++;
            swap(&arr[i], &arr[j]);
-       }else if(strcmp(pivot.last, arr[j].last) == 0){
-            if(strcmp(pivot.first, arr[j].first) > 0){
+       }else if(strcmp(pivot.last_name, arr[j].last_name) == 0){
+            if(strcmp(pivot.first_name, arr[j].first_name) > 0){
                 i++;
                 swap(&arr[i], &arr[j]);
             }
@@ -97,7 +97,8 @@ void quickSort(person_t arr[] , int low, int high){
     if (low < high){ //makes sure that low is not large that high.
         sort(arr, low, high);
         quickSort(arr , low, high - 1);
-        quickSort(arr , low + 1, high); 
+        quickSort(arr , low + 1, high);
+    }
 }
 
 /*

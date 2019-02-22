@@ -39,13 +39,13 @@ typedef struct{
 
 person_t sort(person_t, int, int);
 
-void quicksort(person_t, int, int);
+void quickSort(person_t, int, int);
 
 void swap(person_t*, person_t*);
 
-void lower(person_t, int);
+void lower(person_t*, int);
 
-void fixName(person_t, int);
+void fixName(person_t*, int);
 
 int readFile(char*, person_t*);
 
