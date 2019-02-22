@@ -243,6 +243,9 @@ void fixName(person_t arr[], int size){
     char new[NAME_SIZE];
     char c;
     for(i = 0; i <= size; i++){//loops through array
+        for(k = 0; k <= NAME_SIZE; k++){//resets the array new[].
+            new[k] = 0;
+        }
         name = arr[i];
         cName = name.last_name;
         for(j = 0; j <= NAME_SIZE; j++){//loops through each char f name.
@@ -255,8 +258,5 @@ void fixName(person_t arr[], int size){
             }
         }
         strcpy(arr[i].last_name, new); 
-        for(k = 0; k <= NAME_SIZE; k++){//resets the array new[].
-            new[k] = 0;
-        }
     }
 }
