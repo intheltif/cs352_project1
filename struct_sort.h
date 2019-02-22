@@ -6,12 +6,16 @@
  * @author Evert Ball
  * @version 1.0 (February 18, 2019)
  */
-#define NAME_SIZE 20;
-#define NUM_PEOPLE 101;
-#define STREET_ADDR_SIZE 31;
-#define PHONE_NUM_SIZE 13;
-#define STATE 3;
-#define NUM_ARGS 3;
+#define NUM_PEOPLE 101
+#define LINE_SIZE 101
+#define STREET_ADDR_SIZE 31
+#define PHONE_NUM_SIZE 13
+#define STATE 3
+#define ZIP_SIZE 6
+#define NAME_SIZE 20
+#define NUM_ARGS 3
+#define INPUT_FILENAME 1
+#define OUTPUT_FILENAME 2
 
 /*
  *Makes a instance of a persons address
@@ -20,7 +24,7 @@ typedef struct{
     char street_add[STREET_ADDR_SIZE];
     char city[STREET_ADDR_SIZE];
     char state[STATE];
-    int zip_code;
+    char zip_code[ZIP_SIZE];
 }address_t;
 
 /*
@@ -43,6 +47,6 @@ void lower(person_t, int);
 
 void fixName(person_t, int);
 
-*person_t readFile(char*);
+int readFile(char*, person_t*);
 
 int writeFile(char*);

@@ -24,12 +24,13 @@ int main(int argc, char **argv){
         fprint("Usage is: struct_sort <inputFile> <outputFile>");
         return 0;
     }
-
+    //initializing vars
     int i = 0;
     int sizePeople = 0;
-    char* inputFilename = argv[1];
-    printf("\n\n%s\n\n", inputFilename);
+    char* inputFilename = argv[INPUT_FILENAME];
+    char* outputFilename = argv[OUTPUT_FILENAME];
     person_t* people = (person_t*)calloc(NUM_PEOPLE, (sizeof(person_t)));
+    
     sizePeople = readFile(inputFilename, people);
     
     for(i = 0; i < sizePeople; i++) {
@@ -105,12 +106,14 @@ void swap(person_t *person1, person_t *person2){
 }
 
 /*
- * This reads in a file by a specified input file.
+ * This reads in a file from a command line specified input file, reads each
+ * line into a buffer, then deconstructs that line, creates a person_t struct,
+ * and adds that struct to the next index of the people array.
  *
  * @param inputFile The address of the file that is being scaned in.
- * @return 
+ * @param people The address of the array of structs to add to.
+ * @return pos The number of items in the array
  */
-
 int readFile(char* inputFile, person_t* people) {
     
     person_t person;
@@ -121,7 +124,6 @@ int readFile(char* inputFile, person_t* people) {
 
     while( fgets(buff, NUM_PEOPLE, input_p) != NULL ) {
         
-        printf("\n(%i)Adding people to array...\n", pos);
         sscanf(buff, "%[^,], %[^,], %[^,], %[^,], %[^,], %[^,], %[^\n]", 
                person.first_name, person.last_name,
                person.address.street_add, person.address.city, 
