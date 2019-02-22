@@ -10,6 +10,7 @@
  */
 #include "struct_sort.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 
@@ -21,7 +22,7 @@ int main(int argc, char **argv){
     //Checking if correct number of command line arguments received
     // prints usage message and exits program if it is not
     if( argc != NUM_ARGS ) {
-        fprint("Usage is: struct_sort <inputFile> <outputFile>");
+        printf("Usage is: struct_sort <inputFile> <outputFile>");
         return 0;
     }
     //initializing vars
@@ -53,7 +54,7 @@ int main(int argc, char **argv){
 
     }
     
-    writeFile(outputFilename);
+    writeFile(outputFilename, people, sizePeople);
 
 }
 
@@ -152,20 +153,20 @@ int readFile(char* inputFile, person_t* people) {
  * @param *outputFile Is the address that the output is written to.
  * @return 
  */
-int writeFile(char *outputFile, person_t* people) {
+int writeFile(char *outputFile, person_t* people, int size) {
     //TODO write the array of people to the output file
 
     FILE* output = fopen(outputFile, "w");
 
     for(i = 0; i < size; i++) {
 
-        fputs(output, people[i].last_name + ", ");
-        fputs(output, people[i].first_name + ", ");
-        fputs(output, people[i].address.street_add + ", ");
-        fputs(output, people[i].address.city + ", ");
-        fputs(output, people[i].address.state + ", ");
-        fputs(output, people[i].address.zip_code + ", ");
-        fputs(output, people[i].phone_num + "\n");
+        fputs(people[i].last_name + ", ", output);
+        fputs(people[i].first_name + ", ", output);
+        fputs(people[i].address.street_add + ", "), output;
+        fputs(people[i].address.city + ", "), output;
+        fputs(people[i].address.state + ", "), output;
+        fputs(people[i].address.zip_code + ", "), output;
+        fputs(people[i].phone_num + "\n"), output;
     }
         
 }
@@ -178,17 +179,13 @@ int writeFile(char *outputFile, person_t* people) {
  */
 char* trimWhitespace(person_t person) {
 
-
-    //TODO Trim the whitespace from the fields.
     char* end;
     char* stringToTrim = person.last_name;
     
-    while(isspace((unsigned char)stringToTrim)) str++;
-
     if(stringToTrim == 0)
         return stringToTrim;
 
-    end = strringToTrim + strlen(stringToTrim) - 1;
+    end = stringToTrim + strlen(stringToTrim) - 1;
     while(end > stringToTrim && isspace((unsigned char)*end)) end --;
 
     end[1] = '\0';
@@ -250,8 +247,9 @@ void fixName(person_t arr[], int size){
             if(j == 0){//makes sure it is the first char of the name.
                 cName[j] = toupper(c);
                 new[j] = cName[j];
-            }else//keeps the rest of the chars the same.
+            } else{//keeps the rest of the chars the same.
                 new[j] = cName[j];
+            }
         }
         strcpy(arr[i].last_name, new); 
         for(k = 0; k <= NAME_SIZE; k++){//resets the array new[].
