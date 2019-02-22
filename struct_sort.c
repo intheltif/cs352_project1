@@ -45,7 +45,10 @@ int main(int argc, char **argv){
         printf("\t(main)Phone: %s\n", people[i].phone_num);
 
     }
-    
+    lower(people, sizePeople);
+    guickSort(people, 0, sizePeople);
+    fixName(people, sizePeople);
+        
     
     writeFile(argv[2]);
 
@@ -62,9 +65,6 @@ int main(int argc, char **argv){
  * @return arr[i + 1] This is the next item to check.
  */
 person_t sort(person_t arr[] , int low, int high){
-   // while(arr[high] == 0){ //Finds the end of the array that is not equal to 0.
-     //   high--;
-   // }
     person_t pivot = arr[high];
     int i = (low - 1); 
     int j;
@@ -72,6 +72,11 @@ person_t sort(person_t arr[] , int low, int high){
        if(strcmp(pivot.last_name, arr[j].last_name) > 0){
            i++;
            swap(&arr[i], &arr[j]);
+       }else if(strcmp(pivot.last, arr[j].last) == 0){
+            if(strcmp(pivot.first, arr[j].first) > 0){
+                i++;
+                swap(&arr[i], &arr[j]);
+            }
        }
     }
     swap(&arr[i + 1], &arr[high]);
@@ -151,6 +156,7 @@ int writeFile(char **outputFile) {
  * This lowers the last name of a array of person_t.
  *
  * @param arr Arr is an array of person_t's.
+ * @param size Size is the Size of the array.
  */
 void lower(person_t arr[], int size){
     int i;
@@ -182,6 +188,7 @@ void lower(person_t arr[], int size){
  * an array of person_t's.
  *
  * @param arr Arr is an array of person_t's.
+ * @param size Size is the size of the array.
  */
 void fixName(person_t arr[], int size){
     int i;
