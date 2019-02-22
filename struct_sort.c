@@ -44,6 +44,7 @@ int main(int argc, char **argv){
         trimWhitespace(people[i]);
 
         printf("\n\nPerson Details: \n");
+        printf("\t(main)First Name: %s\n", people[i].first_name);
         printf("\t(main)Last Name: %s\n", people[i].last_name);
         printf("\t(main)Address: %s, %s, %s, %s\n", 
             people[i].address.street_add,
@@ -142,6 +143,7 @@ int readFile(char* inputFile, person_t* people) {
         pos++;
 
     } // end while loop
+    fclose(input_p);
     
     return pos;
 
@@ -153,7 +155,7 @@ int readFile(char* inputFile, person_t* people) {
  * @param *outputFile Is the address that the output is written to.
  * @return 
  */
-int writeFile(char *outputFile, person_t* people, int size) {
+void writeFile(char *outputFile, person_t* people, int size) {
     //TODO write the array of people to the output file
 
     FILE* output = fopen(outputFile, "w");
@@ -161,15 +163,15 @@ int writeFile(char *outputFile, person_t* people, int size) {
 
     for(i = 0; i < size; i++) {
 
-        fputs(people[i].last_name + ", ", output);
-        fputs(people[i].first_name + ", ", output);
-        fputs(people[i].address.street_add + ", "), output;
-        fputs(people[i].address.city + ", "), output;
-        fputs(people[i].address.state + ", "), output;
-        fputs(people[i].address.zip_code + ", "), output;
-        fputs(people[i].phone_num + "\n"), output;
+        fputs(strcat(people[i].last_name, ", "), output);
+        fputs(strcat(people[i].first_name, ", "), output);
+        fputs(strcat(people[i].address.street_add, ", "), output);
+        fputs(strcat(people[i].address.city, ", "), output);
+        fputs(strcat(people[i].address.state, ", "), output);
+        fputs(strcat(people[i].address.zip_code, ", "), output);
+        fputs(strcat(people[i].phone_num, "\n"), output);
     }
-        
+    fclose(output);    
 }
 
 /*
