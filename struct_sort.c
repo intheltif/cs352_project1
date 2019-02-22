@@ -32,9 +32,12 @@ int main(int argc, char **argv){
     person_t* people = (person_t*)calloc(NUM_PEOPLE, (sizeof(person_t)));
     
     sizePeople = readFile(inputFilename, people);
-    
+
+
     for(i = 0; i < sizePeople; i++) {
-        
+
+        trimWhitespace(people[i]);
+
         printf("\n\nPerson Details: \n");
         printf("\t(main)Last Name: %s\n", people[i].last_name);
         printf("\t(main)Address: %s, %s, %s, %s\n", 
@@ -47,7 +50,7 @@ int main(int argc, char **argv){
     }
     
     
-    writeFile(argv[2]);
+    writeFile(outputFilename);
 
 }
 
@@ -143,8 +146,48 @@ int readFile(char* inputFile, person_t* people) {
  * @param *outputFile Is the address that the output is written to.
  * @return 
  */
-int writeFile(char **outputFile) {
+int writeFile(char *outputFile, person_t* people) {
+    //TODO write the array of people to the output file
 
+    FILE* output = fopen(outputFile, "w");
+
+    for(i = 0; i < size; i++) {
+
+        fputs(output, people[i].last_name + ", ");
+        fputs(output, people[i].first_name + ", ");
+        fputs(output, people[i].address.street_add + ", ");
+        fputs(output, people[i].address.city + ", ");
+        fputs(output, people[i].address.state + ", ");
+        fputs(output, people[i].address.zip_code + ", ");
+        fputs(output, people[i].phone_num + "\n");
+    }
+        
+}
+
+/*
+ * Helper function that trims whitespace from the fields of the person_t
+ *
+ * @param
+ * @return
+ */
+char* trimWhitespace(person_t person) {
+
+
+    //TODO Trim the whitespace from the fields.
+    char* end;
+    char* stringToTrim = person.last_name;
+    
+    while(isspace((unsigned char)stringToTrim)) str++;
+
+    if(stringToTrim == 0)
+        return stringToTrim;
+
+    end = strringToTrim + strlen(stringToTrim) - 1;
+    while(end > stringToTrim && isspace((unsigned char)*end)) end --;
+
+    end[1] = '\0';
+
+    return stringToTrim;
 }
 
 /*

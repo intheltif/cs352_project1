@@ -49,4 +49,6 @@ void fixName(person_t, int);
 
 int readFile(char*, person_t*);
 
-int writeFile(char*);
+int writeFile(char*, person_t*);
+
+char* trimWhitespace(person_t);
