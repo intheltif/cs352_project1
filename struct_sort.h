@@ -39,6 +39,9 @@ void quicksort(person_t, int, int);
 
 void swap(person_t*, person_t*);
 
+void lower(person_t);
+
+void fixName(person_t(;
 *person_t readFile(char*);
 
 int writeFile(char*);

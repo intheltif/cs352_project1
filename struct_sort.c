@@ -37,10 +37,10 @@ int main(int argc, char **argv){
  * and the all smaller than pivot goes to the left, all larger than pivot goes 
  * the right. 
  *
- * @param 
- * @param
- * @param 
- * @return 
+ * @param arr This is the array that holds the people to be sorted.
+ * @param low Low is the index of the first element in arr.
+ * @param high High is the index of the last element in arr.
+ * @return arr[i + 1] This is the next item to check.
  */
 person_t sort(person_t arr[] , int low, int high){
     while(arr[high] == 0){ //Finds the end of the array that is not equal to 0.
@@ -50,7 +50,7 @@ person_t sort(person_t arr[] , int low, int high){
     int i = (low - 1); 
     int j;
     if(j = low; j <= high - 1; j++){
-       if(strcmp(pivot.last, arr[j].last) > 0){
+       if(strcmp(pivot.last_name, arr[j].last_name) > 0){
            i++;
            swap(&arr[i], &arr[j]);
        }
@@ -62,9 +62,9 @@ person_t sort(person_t arr[] , int low, int high){
 /*
  *This method performs a quickSort on an array of person_t's.
  *
- *@param arr
- *@param low 
- *@param high
+ *@param arr Arr is the array of people to be sorted.
+ *@param low Low is the index of the first element in the array.
+ *@param high High is the index of the last element in the array.
  */
 void quickSort(person_t arr[] , int low, int high){
     if (low < high){ //makes sure that low is not large that high.
@@ -126,6 +126,69 @@ void swap(person_t *person1, person_t *person2){
 int writeFile(char **outputFile) {
 
 }
+
+/*
+ * This lowers the last name of a array of person_t.
+ *
+ * @param arr Arr is an array of person_t's.
+ */
+void lower(person_t arr[]){
+    int i;
+    int j;
+    char c;
+    person_t name;
+    char* cName;
+    char new[NUM_PEOPLE];
+    int k;
+    for(i = 0; i <= NUM_PEOPLE; i++){
+        for(k = 0; k <= NUM_PEOPLE; k++){
+            new[k] = 0;
+        }
+        name = arr[i];
+        cName = name.last_name;
+        for(j = 0; j <= NUM_PEOPLE; j++){
+            c = cName[j];
+            if( c != 0){
+                cName[j] = tolower(c);
+                new[j] = cName[j];
+            }
+        }
+        strcpy(arr[i].last_name, new); 
+    }
+}
+
+/*
+ * This makes the first letter of a name an uppercase letter with
+ * an array of person_t's.
+ *
+ * @param arr Arr is an array of person_t's.
+ */
+void fixName(person_t arr[]){
+    int i;
+    int j;
+    int k;
+    person_t name;
+    char* cName;
+    char new[NUM_PEOPLE];
+    char c;
+    for(i = 0; i <= NUM_PEOPLE; i++){
+        name = arr[i];
+        cName = name.last_name;
+        for(j = 0; j <= NUM_PEOPLE; j++){
+            c = cName[j];
+            if(j == 0){
+                cName[j] = toupper(c);
+                new[j] = cName[j];
+            }else
+                new[j] = cName[j];
+        }
+        strcpy(arr[i].last_name, new); 
+        for(k = 0; k <= NUM_PEOPLE; k++){
+            new[k] = 0;
+        }
+    }
+}
+
 
 /*
  * This parses a specified array of characters (AKA a string)
