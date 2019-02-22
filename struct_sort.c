@@ -34,6 +34,10 @@ int main(int argc, char **argv){
     sizePeople = readFile(inputFilename, people);
 
 
+    lower(people, sizePeople);
+    guickSort(people, 0, sizePeople);
+    fixName(people, sizePeople);
+        
     for(i = 0; i < sizePeople; i++) {
 
         trimWhitespace(people[i]);
@@ -48,10 +52,6 @@ int main(int argc, char **argv){
         printf("\t(main)Phone: %s\n", people[i].phone_num);
 
     }
-    lower(people, sizePeople);
-    guickSort(people, 0, sizePeople);
-    fixName(people, sizePeople);
-        
     
     writeFile(outputFilename);
 
