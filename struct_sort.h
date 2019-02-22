@@ -6,7 +6,7 @@
  * @author Evert Ball
  * @version 1.0 (February 18, 2019)
  */
-
+#define NAME_SIZE 20;
 #define NUM_PEOPLE 101;
 #define STREET_ADDR_SIZE 31;
 #define PHONE_NUM_SIZE 13;
@@ -27,8 +27,8 @@ typedef struct{
  *Makes an instance of a person
  */
 typedef struct{
-    char first_name[NUM_PEOPLE];
-    char last_name[NUM_PEOPLE];
+    char first_name[NAME_SIZE];
+    char last_name[NAME_SIZE];
     address_t address;
     char phone_num[PHONE_NUM_SIZE];
 }person_t;
@@ -39,9 +39,10 @@ void quicksort(person_t, int, int);
 
 void swap(person_t*, person_t*);
 
-void lower(person_t);
+void lower(person_t, int);
 
-void fixName(person_t(;
+void fixName(person_t, int);
+
 *person_t readFile(char*);
 
 int writeFile(char*);

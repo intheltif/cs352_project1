@@ -133,21 +133,21 @@ int writeFile(char **outputFile) {
  *
  * @param arr Arr is an array of person_t's.
  */
-void lower(person_t arr[]){
+void lower(person_t arr[], int size){
     int i;
     int j;
     char c;
     person_t name;
     char* cName;
-    char new[NUM_PEOPLE];
+    char new[NAME_SIZE];
     int k;
-    for(i = 0; i <= NUM_PEOPLE; i++){//loop through array.
-        for(k = 0; k <= NUM_PEOPLE; k++){//resets the new[] array.
+    for(i = 0; i <= size; i++){//loop through array.
+        for(k = 0; k <= NAME_SIZE; k++){//resets the new[] array.
             new[k] = 0;
         }
         name = arr[i];
         cName = name.last_name;
-        for(j = 0; j <= NUM_PEOPLE; j++){//loops through each char of name.
+        for(j = 0; j <= NAME_SIZE; j++){//loops through each char of name.
             c = cName[j];
             if(c != 0){//makes sure that a char is present at that point.
                 cName[j] = tolower(c);
@@ -164,18 +164,18 @@ void lower(person_t arr[]){
  *
  * @param arr Arr is an array of person_t's.
  */
-void fixName(person_t arr[]){
+void fixName(person_t arr[], int size){
     int i;
     int j;
     int k;
     person_t name;
     char* cName;
-    char new[NUM_PEOPLE];
+    char new[NAME_SIZE];
     char c;
-    for(i = 0; i <= NUM_PEOPLE; i++){//loops through array
+    for(i = 0; i <= size; i++){//loops through array
         name = arr[i];
         cName = name.last_name;
-        for(j = 0; j <= NUM_PEOPLE; j++){//loops through each char f name.
+        for(j = 0; j <= NAME_SIZE; j++){//loops through each char f name.
             c = cName[j];
             if(j == 0){//makes sure it is the first char of the name.
                 cName[j] = toupper(c);
@@ -184,21 +184,8 @@ void fixName(person_t arr[]){
                 new[j] = cName[j];
         }
         strcpy(arr[i].last_name, new); 
-        for(k = 0; k <= NUM_PEOPLE; k++){//resets the array new[].
+        for(k = 0; k <= NAME_SIZE; k++){//resets the array new[].
             new[k] = 0;
         }
     }
-}
-
-/*
- * This parses a specified array of characters (AKA a string)
- *
- * @param stringToParse The string to be parsed
- * @return
- */
-void parseLine(char* stringToParse) {
-
-    //TODO use sscanf() as described in Dr. Holliday's notes
-    //ALERT: We may not actually need this function. Still deciding
-
 }
