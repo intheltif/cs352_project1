@@ -6,11 +6,12 @@
  *
  * @author Carlee Yancey
  * @author Every Ball
- * @version 1.0 (February 18, 2019)
+ * @version 1.0 (February 25, 2019)
  */
 #include "struct_sort.h"
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
 /*
  * This function runs the program.
@@ -54,42 +55,40 @@ int main(int argc, char **argv){
  * and the all smaller than pivot goes to the left, all larger than pivot goes 
  * the right. 
  *
- * @param 
- * @param
- * @param 
- * @return 
+ * @param arr This is the array that holds the people to be sorted.
+ * @param low Low is the index of the first element in arr.
+ * @param high High is the index of the last element in arr.
+ * @return arr[i + 1] This is the next item to check.
  */
-int sort(person_t* arr , int low, int high){
-    while(arr[high] == 0){ //Finds the end of the array that is not equal to 0.
-        high--;
-    }
+person_t sort(person_t arr[] , int low, int high){
+   // while(arr[high] == 0){ //Finds the end of the array that is not equal to 0.
+     //   high--;
+   // }
     person_t pivot = arr[high];
     int i = (low - 1); 
-
-    if(int j = low; j <= high - 1; j++){
-       if(strcmp(pivot, arr[j]) > 0){
+    int j;
+    for(j = low; j <= high - 1; j++){//Loop as long as j is not larger that high
+       if(strcmp(pivot.last_name, arr[j].last_name) > 0){
            i++;
            swap(&arr[i], &arr[j]);
        }
     }
     swap(&arr[i + 1], &arr[high]);
-    return (i + 1);
-    
+    return arr[i + 1];
 }
 
 /*
  *This method performs a quickSort on an array of person_t's.
  *
- *@param arr
- *@param low 
- *@param high
+ *@param arr Arr is the array of people to be sorted.
+ *@param low Low is the index of the first element in the array.
+ *@param high High is the index of the last element in the array.
  */
-void quickSort(person_t* arr , int low, int high){
-    if (low < high){
-        person_t piv = sort( , low, high);
-
-        quickSort(arr , low, pi - 1);
-        quickSort(arr , pi + 1, high); 
+void quickSort(person_t arr[] , int low, int high){
+    if (low < high){ //makes sure that low is not large that high.
+        sort(arr, low, high);
+        quickSort(arr , low, high - 1);
+        quickSort(arr , low + 1, high); 
 }
 
 /*
@@ -147,14 +146,63 @@ int writeFile(char **outputFile) {
 }
 
 /*
- * This parses a specified array of characters (AKA a string)
+ * This lowers the last name of a array of person_t.
  *
- * @param stringToParse The string to be parsed
- * @return
+ * @param arr Arr is an array of person_t's.
  */
-void parseLine(char* stringToParse) {
+void lower(person_t arr[], int size){
+    int i;
+    int j;
+    char c;
+    person_t name;
+    char* cName;
+    char new[NAME_SIZE];
+    int k;
+    for(i = 0; i <= size; i++){//loop through array.
+        for(k = 0; k <= NAME_SIZE; k++){//resets the new[] array.
+            new[k] = 0;
+        }
+        name = arr[i];
+        cName = name.last_name;
+        for(j = 0; j <= NAME_SIZE; j++){//loops through each char of name.
+            c = cName[j];
+            if(c != 0){//makes sure that a char is present at that point.
+                cName[j] = tolower(c);
+                new[j] = cName[j];
+            }
+        }
+        strcpy(arr[i].last_name, new); 
+    }
+}
 
-    //TODO use sscanf() as described in Dr. Holliday's notes
-    //ALERT: We may not actually need this function. Still deciding
-
+/*
+ * This makes the first letter of a name an uppercase letter with
+ * an array of person_t's.
+ *
+ * @param arr Arr is an array of person_t's.
+ */
+void fixName(person_t arr[], int size){
+    int i;
+    int j;
+    int k;
+    person_t name;
+    char* cName;
+    char new[NAME_SIZE];
+    char c;
+    for(i = 0; i <= size; i++){//loops through array
+        name = arr[i];
+        cName = name.last_name;
+        for(j = 0; j <= NAME_SIZE; j++){//loops through each char f name.
+            c = cName[j];
+            if(j == 0){//makes sure it is the first char of the name.
+                cName[j] = toupper(c);
+                new[j] = cName[j];
+            }else//keeps the rest of the chars the same.
+                new[j] = cName[j];
+        }
+        strcpy(arr[i].last_name, new); 
+        for(k = 0; k <= NAME_SIZE; k++){//resets the array new[].
+            new[k] = 0;
+        }
+    }
 }
