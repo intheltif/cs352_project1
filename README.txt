@@ -11,8 +11,11 @@ sorted_contacts.txt
 #Usage
 Complile
     gcc -Wall struct_sort.c -o struct_sort
+To run 
+    ./struct_sort contacts.txt sorted_contacts.txt
 
 #Output
+
 
 #Bugs 
 Currently there are no bugs in our program.
