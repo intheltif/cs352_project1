@@ -157,6 +157,7 @@ int writeFile(char *outputFile, person_t* people, int size) {
     //TODO write the array of people to the output file
 
     FILE* output = fopen(outputFile, "w");
+    int i;
 
     for(i = 0; i < size; i++) {
 
