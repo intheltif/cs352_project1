@@ -6,11 +6,12 @@
  *
  * @author Carlee Yancey
  * @author Every Ball
- * @version 1.0 (February 18, 2019)
+ * @version 1.0 (February 25, 2019)
  */
 #include "struct_sort.h"
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
 /*
  * This function runs the program.
@@ -43,13 +44,13 @@ int main(int argc, char **argv){
  * @return arr[i + 1] This is the next item to check.
  */
 person_t sort(person_t arr[] , int low, int high){
-    while(arr[high] == 0){ //Finds the end of the array that is not equal to 0.
-        high--;
-    }
+   // while(arr[high] == 0){ //Finds the end of the array that is not equal to 0.
+     //   high--;
+   // }
     person_t pivot = arr[high];
     int i = (low - 1); 
     int j;
-    if(j = low; j <= high - 1; j++){
+    for(j = low; j <= high - 1; j++){//Loop as long as j is not larger that high
        if(strcmp(pivot.last_name, arr[j].last_name) > 0){
            i++;
            swap(&arr[i], &arr[j]);
@@ -68,7 +69,7 @@ person_t sort(person_t arr[] , int low, int high){
  */
 void quickSort(person_t arr[] , int low, int high){
     if (low < high){ //makes sure that low is not large that high.
-        sort( , low, high);
+        sort(arr, low, high);
         quickSort(arr , low, high - 1);
         quickSort(arr , low + 1, high); 
 }
@@ -140,15 +141,15 @@ void lower(person_t arr[]){
     char* cName;
     char new[NUM_PEOPLE];
     int k;
-    for(i = 0; i <= NUM_PEOPLE; i++){
-        for(k = 0; k <= NUM_PEOPLE; k++){
+    for(i = 0; i <= NUM_PEOPLE; i++){//loop through array.
+        for(k = 0; k <= NUM_PEOPLE; k++){//resets the new[] array.
             new[k] = 0;
         }
         name = arr[i];
         cName = name.last_name;
-        for(j = 0; j <= NUM_PEOPLE; j++){
+        for(j = 0; j <= NUM_PEOPLE; j++){//loops through each char of name.
             c = cName[j];
-            if( c != 0){
+            if(c != 0){//makes sure that a char is present at that point.
                 cName[j] = tolower(c);
                 new[j] = cName[j];
             }
@@ -171,24 +172,23 @@ void fixName(person_t arr[]){
     char* cName;
     char new[NUM_PEOPLE];
     char c;
-    for(i = 0; i <= NUM_PEOPLE; i++){
+    for(i = 0; i <= NUM_PEOPLE; i++){//loops through array
         name = arr[i];
         cName = name.last_name;
-        for(j = 0; j <= NUM_PEOPLE; j++){
+        for(j = 0; j <= NUM_PEOPLE; j++){//loops through each char f name.
             c = cName[j];
-            if(j == 0){
+            if(j == 0){//makes sure it is the first char of the name.
                 cName[j] = toupper(c);
                 new[j] = cName[j];
-            }else
+            }else//keeps the rest of the chars the same.
                 new[j] = cName[j];
         }
         strcpy(arr[i].last_name, new); 
-        for(k = 0; k <= NUM_PEOPLE; k++){
+        for(k = 0; k <= NUM_PEOPLE; k++){//resets the array new[].
             new[k] = 0;
         }
     }
 }
-
 
 /*
  * This parses a specified array of characters (AKA a string)
