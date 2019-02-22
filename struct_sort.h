@@ -37,9 +37,9 @@ typedef struct{
     char phone_num[PHONE_NUM_SIZE];
 }person_t;
 
-person_t sort(person_t, int, int);
+person_t sort(person_t*, int, int);
 
-void quickSort(person_t, int, int);
+void quickSort(person_t*, int, int);
 
 void swap(person_t*, person_t*);
 

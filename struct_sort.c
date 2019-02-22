@@ -36,7 +36,7 @@ int main(int argc, char **argv){
 
 
     lower(people, sizePeople);
-    guickSort(people, 0, sizePeople);
+    quickSort(people, 0, sizePeople);
     fixName(people, sizePeople);
         
     for(i = 0; i < sizePeople; i++) {
@@ -68,7 +68,7 @@ int main(int argc, char **argv){
  * @param high High is the index of the last element in arr.
  * @return arr[i + 1] This is the next item to check.
  */
-person_t sort(person_t arr[] , int low, int high){
+person_t sort(person_t* arr , int low, int high){
     person_t pivot = arr[high];
     int i = (low - 1); 
     int j;
@@ -94,7 +94,7 @@ person_t sort(person_t arr[] , int low, int high){
  *@param low Low is the index of the first element in the array.
  *@param high High is the index of the last element in the array.
  */
-void quickSort(person_t arr[] , int low, int high){
+void quickSort(person_t* arr , int low, int high){
     if (low < high){ //makes sure that low is not large that high.
         sort(arr, low, high);
         quickSort(arr , low, high - 1);
