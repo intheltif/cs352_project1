@@ -17,18 +17,35 @@
  */
 int main(int argc, char **argv){
     
-    int i = 0;
-    
     //Checking if correct number of command line arguments received
     // prints usage message and exits program if it is not
     if( argc != NUM_ARGS ) {
         fprint("Usage is: struct_sort <inputFile> <outputFile>");
         return 0;
     }
+
+    int i = 0;
+    int sizePeople = 0;
+    char* inputFilename = argv[1];
+    printf("\n\n%s\n\n", inputFilename);
+    person_t* people = (person_t*)calloc(NUM_PEOPLE, (sizeof(person_t)));
+    sizePeople = readFile(inputFilename, people);
     
-    readFile(argv[1]);
+    for(i = 0; i < sizePeople; i++) {
+        
+        printf("\n\nPerson Details: \n");
+        printf("\t(main)Last Name: %s\n", people[i].last_name);
+        printf("\t(main)Address: %s, %s, %s, %s\n", 
+            people[i].address.street_add,
+            people[i].address.city, 
+            people[i].address.state,
+            people[i].address.zip_code);
+        printf("\t(main)Phone: %s\n", people[i].phone_num);
+
+    }
+    
+    
     writeFile(argv[2]);
-    //if possible: writeFile(readFile(argv[1]), argv[2]) with adjustments
 
 }
 
@@ -91,33 +108,33 @@ void swap(person_t *person1, person_t *person2){
 /*
  * This reads in a file by a specified input file.
  *
- * @param *inputFile Is the address of the file that is being scaned in.
+ * @param inputFile The address of the file that is being scaned in.
  * @return 
  */
-*person_t readFile(char *inputFile) {
-    
-    /** An array of person_t structs **/
-    person_t people[NUM_PEOPLE];
-    //Assures memory cleared before adding values
-    bzero(people, NUM_PEOPLE);
 
-    address_t address;
+int readFile(char* inputFile, person_t* people) {
+    
     person_t person;
-    
-    char buff[NUM_PEOPLE];
-    
-    FILE *input_p = fopen(*inputFile, "r");
-    
+    int pos = 0;
+    char* buff = (char*)calloc(NUM_PEOPLE, sizeof(char*));
+
+    FILE* input_p = fopen(inputFile, "r");
 
     while( fgets(buff, NUM_PEOPLE, input_p) != NULL ) {
-        //Scans each string returned from buff and
-        //adds a new person and address struct
-        sscanf(idk, "%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,]", 
+        
+        printf("\n(%i)Adding people to array...\n", pos);
+        sscanf(buff, "%[^,], %[^,], %[^,], %[^,], %[^,], %[^,], %[^\n]", 
                person.first_name, person.last_name,
-               address.street_add, address.city, address.state,
-               address.zipcode, person.phone_num);
-    }
-}
+               person.address.street_add, person.address.city, 
+               person.address.state, person.address.zip_code, person.phone_num);
+        people[pos] = person;
+        pos++;
+
+    } // end while loop
+    
+    return pos;
+
+} // end readFile
 
 /*
  * This writes to a specified output file.
