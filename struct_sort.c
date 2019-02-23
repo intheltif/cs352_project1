@@ -231,7 +231,7 @@ void lower(person_t arr[], int size){
         }   
         for(j = 0; j < fsize; j++){//loops through each char of name.
             c2 = fName[j];;
-            if(c2 != 0 && c2 != 32){//makes sure that a char is present at that point.
+            if(c2 != 0 && c2 != BLANK_CHAR){//makes sure that a char is present at that point.
                 fName[j] = tolower(c2);
                 fnew[j - blankC] = fName[j];
             }else{ 
@@ -282,7 +282,7 @@ void fixName(person_t arr[], int size){
         }
         for(j = 0; j < fsize; j++){//loops through each char f name.
             c2 = fName[j];
-            if(c2 != 0 && c2 != 32){
+            if(c2 != 0 && c2 != BLANK_CHAR){
                 if((j - blankC) == 0){//makes sure it is the first char of the name.
                     fName[j] = toupper(c2);
                     fnew[j- blankC] = fName[j];
