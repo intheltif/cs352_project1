@@ -69,9 +69,9 @@ int main(int argc, char **argv){
  * @param high High is the index of the last element in arr.
  * @return arr[i + 1] This is the next item to check.
  */
-person_t sort(person_t* arr , int low, int high){
-    person_t pivot = arr[high];
-    int i = (low - 1); 
+void sort(person_t* arr , int low, int high){
+    person_t pivot = arr[high - 1];
+    int i = low - 1; 
     int j;
     for(j = low; j <= high - 1; j++){//Loop as long as j is not larger that high
        if(strcmp(pivot.last_name, arr[j].last_name) > 0){
@@ -84,8 +84,7 @@ person_t sort(person_t* arr , int low, int high){
             }
        }
     }
-    swap(&arr[i + 1], &arr[high]);
-    return arr[i + 1];
+    swap(&arr[i + 1], &arr[high -1]);
 }
 
 /*
@@ -203,28 +202,45 @@ char* trimWhitespace(person_t person) {
  * @param size Size is the Size of the array.
  */
 void lower(person_t arr[], int size){
-    int i;
-    int j;
-    char c;
+    int i, j, k, lsize, fsize, blankC;
+    char c1, c2;
     person_t name;
     char* cName;
-    char new[NAME_SIZE];
-    int k;
+    char * fName;
     for(i = 0; i <= size; i++){//loop through array.
-        for(k = 0; k <= NAME_SIZE; k++){//resets the new[] array.
-            new[k] = 0;
-        }
+        blankC = 0;
         name = arr[i];
         cName = name.last_name;
-        for(j = 0; j <= NAME_SIZE; j++){//loops through each char of name.
-            c = cName[j];
-            if(c != 0){//makes sure that a char is present at that point.
-                cName[j] = tolower(c);
+        fName = name.first_name;
+        lsize = strlen(cName);
+        fsize = strlen(fName);
+        char new[lsize];
+        char fnew[fsize];
+        for(k = 0; k <= lsize; k++){//resets the new[] array.
+            new[k] = 0;
+        }
+        for(k = 0; k <= fsize; k++){//resets the new[] array.
+            fnew[k] = 0;
+        }
+        for(j = 0; j < lsize; j++){//loops through each char of name.
+            c1 = cName[j];
+            if(c1 != 0){//makes sure that a char is present at that point.
+                cName[j] = tolower(c1);
                 new[j] = cName[j];
             }
-        }
+        }   
+        for(j = 0; j < fsize; j++){//loops through each char of name.
+            c2 = fName[j];;
+            if(c2 != 0 && c2 != 32){//makes sure that a char is present at that point.
+                fName[j] = tolower(c2);
+                fnew[j - blankC] = fName[j];
+            }else{ 
+                blankC++;
+            }
+        }   
         strcpy(arr[i].last_name, new); 
-    }
+        strcpy(arr[i].first_name, fnew); 
+   } 
 }
 
 /*
@@ -235,28 +251,48 @@ void lower(person_t arr[], int size){
  * @param size Size is the size of the array.
  */
 void fixName(person_t arr[], int size){
-    int i;
-    int j;
-    int k;
+    int i, j, k, blankC, lsize, fsize;
     person_t name;
     char* cName;
-    char new[NAME_SIZE];
-    char c;
+    char* fName;
+    char c1, c2;
     for(i = 0; i <= size; i++){//loops through array
-        for(k = 0; k <= NAME_SIZE; k++){//resets the array new[].
-            new[k] = 0;
-        }
+        blankC = 0;
         name = arr[i];
         cName = name.last_name;
-        for(j = 0; j <= NAME_SIZE; j++){//loops through each char f name.
-            c = cName[j];
-            if(j == 0){//makes sure it is the first char of the name.
-                cName[j] = toupper(c);
-                new[j] = cName[j];
-            } else{//keeps the rest of the chars the same.
-                new[j] = cName[j];
+        fName = name.first_name;
+        lsize = strlen(cName);
+        fsize = strlen(fName);
+        char new[lsize];
+        char fnew[fsize];
+        for(k = 0; k <= lsize; k++){//resets the array new[].
+            new[k] = 0;
+        }     
+        for(k = 0; k <= fsize; k++){//resets the array new[].
+            fnew[k] = 0;
+        }     
+        for(j = 0; j < lsize; j++){//loops through each char f name.
+            c1 = cName[j];
+            if(j == 0){//makes sure it is the first char of the name.    
+                  cName[j] = toupper(c1);
+                  new[j] = cName[j];
+            }else{//keeps the rest of the chars the same.
+                     new[j] = cName[j];
             }
         }
-        strcpy(arr[i].last_name, new); 
+        for(j = 0; j < fsize; j++){//loops through each char f name.
+            c2 = fName[j];
+            if(c2 != 0 && c2 != 32){
+                if((j - blankC) == 0){//makes sure it is the first char of the name.
+                    fName[j] = toupper(c2);
+                    fnew[j- blankC] = fName[j];
+                }else{//keeps the rest of the chars the same.
+                    fnew[j-blankC] = fName[j];
+                }
+            }else
+                blankC++;
+        }
+        strcpy(arr[i].last_name, new);
+        strcpy(arr[i].first_name, fnew); 
     }
 }
