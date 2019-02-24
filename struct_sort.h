@@ -16,7 +16,7 @@
 #define NUM_ARGS 3
 #define INPUT_FILENAME 1
 #define OUTPUT_FILENAME 2
-
+#define BLANK_CHAR 32
 /*
  *Makes a instance of a persons address
  */
@@ -37,7 +37,7 @@ typedef struct{
     char phone_num[PHONE_NUM_SIZE];
 }person_t;
 
-person_t sort(person_t*, int, int);
+void sort(person_t*, int, int);
 
 void quickSort(person_t*, int, int);
 
