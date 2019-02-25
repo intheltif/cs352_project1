@@ -23,39 +23,39 @@ int main(int argc, char **argv){
     // prints usage message and exits program if it is not
     if( argc != NUM_ARGS ) {
         printf("Usage is: struct_sort <inputFile> <outputFile>");
-        return 0;
+        //return 1 to show program encountered problem
+        return 1;
     }
-    //initializing vars
+    //initializing size and for loop i value
     int i = 0;
     int sizePeople = 0;
+    
+    //Initializing input/output filenames
     char* inputFilename = argv[INPUT_FILENAME];
     char* outputFilename = argv[OUTPUT_FILENAME];
+
+    //initializing people array dynamically
     person_t* people = (person_t*)calloc(NUM_PEOPLE, (sizeof(person_t)));
     
+    //reads in contents from file and builds structs, then returns the size.
     sizePeople = readFile(inputFilename, people);
 
-
+    //converts to lowercase, sorts, then converts to original case
     lower(people, sizePeople);
+    printf("Sorting...\n"); // Let's user know that sorting has started.
     quickSort(people, 0, sizePeople);
     fixName(people, sizePeople);
-        
+    
+    // Trim whitespace on all person struct attributes
     for(i = 0; i < sizePeople; i++) {
-
         trimWhitespace(people[i]);
-
-        printf("\n\nPerson Details: \n");
-        printf("\t(main)First Name: %s\n", people[i].first_name);
-        printf("\t(main)Last Name: %s\n", people[i].last_name);
-        printf("\t(main)Address: %s, %s, %s, %s\n", 
-            people[i].address.street_add,
-            people[i].address.city, 
-            people[i].address.state,
-            people[i].address.zip_code);
-        printf("\t(main)Phone: %s\n", people[i].phone_num);
-
     }
     
+    //writes sorted structs to an output file
     writeFile(outputFilename, people, sizePeople);
+    
+    // Letting user know that entire process has finished
+    printf("Done!\n");
 
 }
 
@@ -70,10 +70,13 @@ int main(int argc, char **argv){
  * @return arr[i + 1] This is the next item to check.
  */
 void sort(person_t* arr , int low, int high){
+    //initializing pivot and for loop counters
     person_t pivot = arr[high - 1];
     int i = low - 1; 
     int j;
-    for(j = low; j <= high - 1; j++){//Loop as long as j is not larger that high
+    
+    //Loop as long as j is not larger than high
+    for(j = low; j <= high - 1; j++){
        if(strcmp(pivot.last_name, arr[j].last_name) > 0){
            i++;
            swap(&arr[i], &arr[j]);
@@ -126,6 +129,9 @@ void swap(person_t *person1, person_t *person2){
  */
 int readFile(char* inputFile, person_t* people) {
     
+    //Outputs to user that reading of file has started
+    printf("Reading...\n");
+    
     person_t person;
     int pos = 0;
     char* buff = (char*)calloc(NUM_PEOPLE, sizeof(char*));
@@ -142,6 +148,8 @@ int readFile(char* inputFile, person_t* people) {
         pos++;
 
     } // end while loop
+
+    //close file pointer
     fclose(input_p);
     
     return pos;
@@ -155,29 +163,34 @@ int readFile(char* inputFile, person_t* people) {
  * @return 
  */
 void writeFile(char *outputFile, person_t* people, int size) {
-    //TODO write the array of people to the output file
 
+    //Let's use know that writing to file has started
+    printf("Writing...\n");
+
+    //Create pointer to user specified output file, create for loop counter
     FILE* output = fopen(outputFile, "w");
     int i;
 
     for(i = 0; i < size; i++) {
-
-        fputs(strcat(people[i].last_name, ", "), output);
-        fputs(strcat(people[i].first_name, ", "), output);
-        fputs(strcat(people[i].address.street_add, ", "), output);
-        fputs(strcat(people[i].address.city, ", "), output);
-        fputs(strcat(people[i].address.state, ", "), output);
-        fputs(strcat(people[i].address.zip_code, ", "), output);
-        fputs(strcat(people[i].phone_num, "\n"), output);
+        fprintf(output, "%s, ", people[i].last_name);
+        fprintf(output, "%s, ", people[i].first_name);
+        fprintf(output, "%s, ", people[i].address.street_add);
+        fprintf(output, "%s, ", people[i].address.city);
+        fprintf(output, "%s, ", people[i].address.state);
+        fprintf(output, "%s, ", people[i].address.zip_code);
+        fprintf(output, "%s,\n", people[i].phone_num);
     }
+
+    //close file pointer
     fclose(output);    
 }
 
 /*
- * Helper function that trims whitespace from the fields of the person_t
+ * Helper function that trims whitespace from the last_name field 
+ * of the person_t.
  *
- * @param
- * @return
+ * @param person the person struct to trim whitespace on
+ * @return stringToTrim the string that was trimed from the person struct
  */
 char* trimWhitespace(person_t person) {
 
@@ -202,11 +215,15 @@ char* trimWhitespace(person_t person) {
  * @param size Size is the Size of the array.
  */
 void lower(person_t arr[], int size){
+    
     int i, j, k, lsize, fsize, blankC;
     char c1, c2;
+
     person_t name;
+
     char* cName;
-    char * fName;
+    char* fName;
+
     for(i = 0; i <= size; i++){//loop through array.
         blankC = 0;
         name = arr[i];
